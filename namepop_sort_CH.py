@@ -123,3 +123,8 @@ print()
 # - are there names that fade in a out over the years, i.e. which have 1 onre more substatial gaps?
 # - given a name, try to devop a list of similar names (levinsten or hamming distance: https://rawgit.com/ztane/python-Levenshtein/master/docs/Levenshtein.html#Levenshtein-distance
 # - plot popularity as swarm plot or violin plot https://seaborn.pydata.org/examples/index.html
+
+
+import Levenshtein # word similarity metrics: pip install python-Levenshtein
+# https://rawgit.com/ztane/python-Levenshtein/master/docs/Levenshtein.html#Levenshtein-jaro_winkler
+print(Levenshtein.jaro_winkler("Annelise", "Amalia")
