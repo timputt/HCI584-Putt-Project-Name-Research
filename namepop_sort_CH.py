@@ -16,16 +16,16 @@ print(n,"has been used", sum_names, "times.")
 # find unique names values
 uniquenames = df.Name.unique()   # FYI: returns a numpy array!
 
+
+# for testing only(!): draw X random samples
+#uniquenames = np.random.choice(uniquenames, 1000)
+# Once this works for you, comment this out to run it for all names
+
 # sort values alpha
 uniquenames.sort()   
 
-# for testing only(!): draw X random samples
-uniquenames = np.random.choice(uniquenames, 500)
-# Once this works for you, comment this out to run it for all names
-
-
 # display sorted values
-print(uniquenames[:10])
+print(uniquenames)
 
 
 def make_unique_name_df(uniquenames, df):
@@ -38,8 +38,8 @@ def make_unique_name_df(uniquenames, df):
         dfun = df[df["Name"] == un]
 
         genders = np.unique(dfun["Gender"].values)# get array of and get unique values
-        if len(genders) == 2:
-            print("***")
+        #if len(genders) == 2:
+        #    print("***")
 
         for gender in genders: # Same name could be used for both genders!
             print(gender, end=", ")
@@ -52,7 +52,7 @@ def make_unique_name_df(uniquenames, df):
             # Get some year-related stats: when seen first and last, peaked (most often) in which year 
             first = dfung["Year"].min()  # smallest = earliest year
             last = dfung["Year"].max()
-            row_when_largest = dfung.nlargest(1, "Year")  # Datframe (just 1 row) with the 1 largest year (could be >1) 
+            row_when_largest = dfung.nlargest(1, "Count")  # Datframe (just 1 row) with the 1 largest year (could be >1) 
             largest_Series = row_when_largest["Year"] # Series (really just a single cell ...)
             largest = largest_Series.values[0] # value of that one (first) cell
 
@@ -107,24 +107,29 @@ df.plot.bar(x="Name", y=["First", "Last"], ylim=[1880, 2024], rot=90) # limit y
 # make a new Duration column
 duration = df_name_stats["Last"] - df_name_stats["First"]
 df.insert(5, "Duration", duration)
+#df_name_stats.sort_values(by="Duration", inplace=True, ascending=True) # sort internally by Duration, ascending
+#df_name_stats.reset_index(drop=True, inplace=True) # re-index
 print(df.head(10))
 
+
 # which names only lasted for less than X years
-df_short = df[df["Duration"] < 60]
-print(df_short.head(10))
+df_short = df[df["Duration"] < 120]
+print("This is DF short:")
+print(df_short.head())
 
 
 
 
 print()
 
-
+'''
 # Some more ideas:
 # - are there names that fade in a out over the years, i.e. which have 1 onre more substatial gaps?
 # - given a name, try to devop a list of similar names (levinsten or hamming distance: https://rawgit.com/ztane/python-Levenshtein/master/docs/Levenshtein.html#Levenshtein-distance
 # - plot popularity as swarm plot or violin plot https://seaborn.pydata.org/examples/index.html
 
 
-import Levenshtein # word similarity metrics: pip install python-Levenshtein
+import Levenshtein # word similarity metrics: pip install levenshtein
 # https://rawgit.com/ztane/python-Levenshtein/master/docs/Levenshtein.html#Levenshtein-jaro_winkler
 print(Levenshtein.jaro_winkler("Annelise", "Amalia")
+'''
