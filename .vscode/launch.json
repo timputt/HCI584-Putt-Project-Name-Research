@@ -10,6 +10,16 @@
             "request": "launch",
             "program": "${file}",
             "console": "integratedTerminal"
+        }, 
+        {
+            "name": "debug streamlit",
+            "type": "python",
+            "request": "launch",
+            "program": "C:\\Users\\timpu\\Anaconda3\\Scripts\\streamlit.exe",  // /home/xx/tmp/venv/bin/streamlit",
+            "args": [
+                "run",
+                "streamlit_test.py"
+            ]
         }
     ]
 }

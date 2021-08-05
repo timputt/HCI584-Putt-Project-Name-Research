@@ -14,12 +14,13 @@ def make_plot():
         ng_str_list = st.session_state.name_selection
         print(ng_str_list)
 
-        # Name/gender as a list, many of these
-        name_lst = [["James","M"], 
-            ["John","M"],
-            ["Jonathan","M"],
-            ["John","F"]
-        ]
+        # New List
+        name_lst = []
+
+        for s in ng_str_list:
+            l = s.split(", ")
+            name_lst.append(l)
+
 
         for nd in name_lst:
             name = nd[0]
@@ -38,7 +39,7 @@ def make_plot():
         plt.legend()
         plt.xlim(1880, 2020) #
 
-        plt.yscale('log') # log scale makes more sense to me ...
+        #plt.yscale('log') # log scale makes more sense to me ...
 
         # plot figure with its axis 
         st.pyplot(fig)
@@ -49,7 +50,7 @@ def main():
     page = st.sidebar.selectbox("Choose a page", ["Tableview", "Exploration"])
 
     if page == "Tableview":
-        st.header("Most popular names 1880-202")
+        st.header("Most popular names 1880-2020")
         st.write(df_name_stats)
         
     elif page == "Exploration":
@@ -66,7 +67,10 @@ def main():
 
         st.session_state.name_selection = names_sel # make a global var called name_selection that we can access in the callback
 
-        st.button("Make plot", key=None, help=None, on_click=make_plot, args=None, kwargs=None)
+        do_log = False
+        st.button("Make plot", key=None, help=None, on_click=make_plot, args=[do_log], kwargs=None)
+        
+        do_log = st.checkbox('Show as log')
         
 
 @st.cache
@@ -75,7 +79,7 @@ def load_data():
     df_name_stats = pd.read_csv("name_stats.csv")
     df_name_stats.sort_values(by="Count", inplace=True, ascending=False) # sort internally by Count, descending
     df_name_stats.reset_index(drop=True, inplace=True) # re-index
-    df_name_stats = df_name_stats.loc[:100] # only use  X most popular names, otherwise streamlit chokes ...
+    df_name_stats = df_name_stats.loc[:1000] # only use  X most popular names, otherwise streamlit chokes ...
     return df, df_name_stats
 
 

@@ -5,14 +5,6 @@ import matplotlib.pyplot as plt
 df = pd.read_csv("ssn_files/all_years.csv")
 #print(df.head(10)) # To confirm the correct data is loading
 
-'''
-n = input("Enter a name to learn how many times it's been registered with Social Security since 1880.")
-dfn = df.query('Name == @n')
-sum_names = dfn["Count"].sum()
-print(dfn)
-print(n,"has been used", sum_names, "times.")
-'''
-
 # find unique names values
 uniquenames = df.Name.unique()   # FYI: returns a numpy array!
 
@@ -75,11 +67,11 @@ def make_unique_name_df(uniquenames, df):
 
 # run  this only if you want to create a new df! 
 #df_name_stats = make_unique_name_df(uniquenames, df)
-#df_name_stats.to_csv("name_stats.csv", index=False)
+#df_name_stats.to_csv("ssn_files/name_stats.csv", index=False)
 
 
 # Once you have created your df, comment out the above 2 lines!
-df_name_stats = pd.read_csv("name_stats.csv")
+df_name_stats = pd.read_csv("ssn_files/name_stats.csv")
 
 df_name_stats.sort_values(by="Count", inplace=True, ascending=False) # sort internally by Count, descending
 df_name_stats.reset_index(drop=True, inplace=True) # re-index
@@ -91,7 +83,8 @@ name_counts = df_name_stats["Name"].value_counts() # Note: Name is used as index
 both_genders_Series = name_counts[ name_counts == 2]
 both_genders = list(both_genders_Series.index) # get the index names for the both gender cases and make a list
 df_both_genders = df_name_stats[df_name_stats['Name'].isin(both_genders)] # grab rows where name is in both_gender list
-df_both_genders.head()
+print(df_both_genders.head())
+
 
 
 # Some plots
@@ -118,18 +111,9 @@ print("This is DF short:")
 print(df_short.head())
 
 
-
-
-print()
-
 '''
 # Some more ideas:
-# - are there names that fade in a out over the years, i.e. which have 1 onre more substatial gaps?
+# - are there names that fade in a out over the years, i.e. which have 1 or more substatial gaps?
 # - given a name, try to devop a list of similar names (levinsten or hamming distance: https://rawgit.com/ztane/python-Levenshtein/master/docs/Levenshtein.html#Levenshtein-distance
 # - plot popularity as swarm plot or violin plot https://seaborn.pydata.org/examples/index.html
-
-
-import Levenshtein # word similarity metrics: pip install levenshtein
-# https://rawgit.com/ztane/python-Levenshtein/master/docs/Levenshtein.html#Levenshtein-jaro_winkler
-print(Levenshtein.jaro_winkler("Annelise", "Amalia")
-'''
+''';

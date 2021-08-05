@@ -1,0 +1,9 @@
+# You need the following non-standard packages to run main.py:
+# To install them, type this into your console:
+#pip -r requirements.txt
+
+
+pandas        # version must be at least 1.2.4
+re
+numpy         # version must be at least 1.20.1
+matplotlib    # version must be at least 3.3.4
