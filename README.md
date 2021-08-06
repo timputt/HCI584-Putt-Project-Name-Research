@@ -33,12 +33,16 @@ __Note:__ All names are from Social Security card applications for births that o
 
 This Jupyter Notebook is intended to be used to explore the name database. It can be used to compare specific names and general trends. Here a sample of charts that were generated using the dataset.
 
+Chart displaying the most popular male names
 ![Image of the most popular male names](img/images/male_pop.png)
 
+Chart displaying a single name
 ![Chart displaying a single name](img/images/graycen_M_F.png)
 
+Chart showing names with the percent of total names used that year
 ![Chart showing names with the percent of total names used that year](img/images/james_with_percent_of_names.png)
 
+Chart displaying a group of names
 ![Chart displaying a group of names](img/images/friends_name_count.png)
 
 # Known issues
