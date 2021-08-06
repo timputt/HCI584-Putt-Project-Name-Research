@@ -29,6 +29,17 @@ for make_name)statsCSV.py
 
 - `main.ipynb`: run it in the project root folder, so it can import from the appropriate csv files
 
+__Note:__ All names are from Social Security card applications for births that occurred in the United States after 1879. Note that many people born before 1937 never applied for a Social Security card, so their names are not included in our data. For others who did apply, our records may not show the place of birth, and again their names are not included in our data.
+
+This Jupyter Notebook is intended to be used to explore the name database. It can be used to compare specific names and general trends. Here a sample of charts that were generated using the dataset.
+
+![Image of the most popular male names](img/images/male_pop.png)
+
+![Chart displaying a single name](img/images/graycen_M_F.png)
+
+![Chart showing names with the percent of total names used that year](img/images/james_with_percent_of_names.png)
+
+![Chart displaying a group of names](img/images/friends_name_count.png)
 
 # Known issues
 None
